@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "board",
+    "to_do_list",
+    "maps",
+    "ranking",
+    "chat",
+    "users",
+    "community"
 ]
 
 MIDDLEWARE = [
