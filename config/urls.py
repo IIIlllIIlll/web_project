@@ -15,14 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("board/", include('board.urls') ),
-    path("chat/", include('chat.urls') ),
-    path("community/", include('community.urls') ),
-    path("maps/", include('maps.urls') ),
-    path("ranking/", include('ranking.urls') ),
-    path("to_do_list/", include('to_do_list.urls') ),
-    path("users/", include('users.urls') ),
+    path("",TemplateView.as_view(template_name="index.html"),name="main"),
+    path("generic/",TemplateView.as_view(template_name="generic.html"),name="generic"),
+    path("elements/",TemplateView.as_view(template_name="elements.html"),name="elements"),
+    # path("board/", include('board.urls') ),
+    # path("chat/", include('chat.urls') ),
+    # path("community/", include('community.urls') ),
+    # path("maps/", include('maps.urls') ),
+    # path("ranking/", include('ranking.urls') ),
+    # path("to_do_list/", include('to_do_list.urls') ),
+    # path("users/", include('users.urls') ),
 ]

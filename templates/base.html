@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <noscript>
+      <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/>
+    </noscript>
+    {% block style %}{% endblock style %}
+  </head>
+
+  <body class="is-preload">
+    <div id="page-wrapper">
+      <header class="alt" id="header">
+        <h1>
+          <a href="">Solid State</a>
+        </h1>
+        <nav>
+          <a href="#menu">Menu</a>
+        </nav>
+      </header>
+      <!-- Menu -->
+      <nav id="menu">
+        <div class="inner">
+          <h2>Menu</h2>
+          <ul class="links">
+            <li>
+              <a href="{% url 'main' %}">Home</a>
+            </li>
+            <li>
+              <a href="{% url 'generic' %}">Generic</a>
+            </li>
+            <li>
+              <a href="{% url 'elements' %}">Elements</a>
+            </li>
+            <li>
+              <a href="#">Log In</a>
+            </li>
+            <li>
+              <a href="#">Sign Up</a>
+            </li>
+          </ul>
+          <a href="#" class="close">Close</a>
+        </div>
+      </nav>
+      {% block contents %}{% endblock contents %}
+      {% include 'footer.html' %}
+    </div>
+    {% block script %}{% endblock script %}
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/jquery.min.js' %} "></script>
+    <script src="{% static 'assets/js/jquery.scrollex.min.js' %} "></script>
+    <script src="{% static 'assets/js/browser.min.js' %} "></script>
+    <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/util.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+
+</html>
