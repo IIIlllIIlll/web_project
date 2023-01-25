@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+  {% block style %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock style %}
+  <form action="" method="post">
+    <div class="form-group mb-3">
+      <label for="title">제목</label>
+      <input type="text" name="title" id="title" class="form-control" value="{{post.title}}" readonly="readonly">
+    </div>
+    <div class="form-group mb-3">
+      <label for="place">장소</label>
+      <input type="text" name="place" id="place" class="form-control" value="{{post.place}}">
+    </div>
+    {% if post.image %}
+      <div class=" form-group mb-3">
+        <label for="image">사진</label>
+        <input type="image" name="image" id="image" class="form-control" value="" readonly="readonly" src="{{post.image.url}}" alt=""style="width:500px;height:500px;">
+      {% endif %}
+    </div>
+    <div class=" form-group mb-3">
+      <label for="content">내용</label>
+      <input type="content" name="content" id="content" class="form-control" value="{{post.content}}" readonly="readonly">
+    </div>
+    <div class=" form-group mb-3">
+      <label for="created_at">Date</label>
+      <input type="text" name="created_at" id="created_at" class="form-control" value="{{post.created_at}}" readonly="readonly">
+    </div>
+    <div class="form-group mb-3">
+      {% if user.is_authenticated and user.is_superuser %}
+      <a href="{% url 'board_edit' post.pk %}"  class="btn text-white"  style="background-color: gray;">수정</a>
+      {% endif %}
+      <a href="{% url 'board_remove' post.pk %}" class="btn text-white" style="background-color: black;">글삭제</a>
+    </div>
+  </form>
+
+{% endblock contents %}
+{% comment %} {% block script %}
+  <script>
+    // pk만 가지고 이동하는 작업이 필요했다
+    // 리스트 버튼 클릭시 전체 리스트 보기로 이동
+
+    const update = document.querySelector(".text-black")
+
+    if (update) {
+      update.addEventListener('click', (e) => {
+
+        e.preventDefault(); // submit 기능 중지'
+        location.href = "{% url 'list' %}";
+      })
+    };
+
+    document
+      .querySelector(".text-white")
+      .addEventListener('click', (e) => {
+
+        e.preventDefault(); // submit 기능 중지'
+        location.href = "{% url 'list' %}";
+      })
+  </script>
+{% endblock script %} {% endcomment %}

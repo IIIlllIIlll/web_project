@@ -1,15 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
     <noscript>
-      <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/>
+      <link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" />
     </noscript>
     {% block style %}{% endblock style %}
   </head>
@@ -30,13 +32,13 @@
           <h2>Menu</h2>
           <ul class="links">
             <li>
-              <a href="{% url 'main' %}">Home</a>
+              <a href="">Home</a>
             </li>
             <li>
-              <a href="{% url 'generic' %}">Generic</a>
+              <a href="">Generic</a>
             </li>
             <li>
-              <a href="{% url 'elements' %}">Elements</a>
+              <a href="">Elements</a>
             </li>
             <li>
               <a href="#">Log In</a>
@@ -48,8 +50,7 @@
           <a href="#" class="close">Close</a>
         </div>
       </nav>
-      {% block contents %}{% endblock contents %}
-      {% include 'footer.html' %}
+      {% block contents %}{% endblock contents %} 
     </div>
     {% block script %}{% endblock script %}
     <!-- Scripts -->
@@ -60,5 +61,6 @@
     <script src="{% static 'assets/js/util.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
   </body>
-
 </html>
+
+{% comment %} {% include 'footer.html' %} {% endcomment %}
