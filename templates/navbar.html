@@ -2,7 +2,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <nav class="navbar bg-body-tertiary sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><img src="{% static 'img/logo.jpg' %}" alt="" style="object-fit: cover; width:80px">크르르르릉</a>
+    <a class="navbar-brand" href="/"><img src="{% static 'img/logo.jpg' %}" alt="" style="object-fit: cover; width:80px">펫밀리</a>
     <div class="justify-content-end">
       <label class="switch theme-switch">
         <input type="checkbox" class="bsc"/>
@@ -15,26 +15,26 @@
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <a class="navbar-brand" href="/">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">크르르르릉</h5>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">펫밀리</h5>
         </a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'board_index' %}">board</a>
+            <a class="nav-link" aria-current="page" href="{% url 'board_index' %}">실종</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'find_index' %}">find</a>
+            <a class="nav-link" aria-current="page" href="{% url 'find_index' %}">임시보호</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'todo_list' %}" disabled="disabled">todo_list</a>
+            <a class="nav-link" href="{% url 'todo_list' %}" disabled="disabled">집사훈련</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'maps' %}">map</a>
+            <a class="nav-link" href="{% url 'maps' %}">집사정보</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'post_list' %}">community</a>
+            <a class="nav-link" href="{% url 'post_list' %}">자유게시판</a>
           </li>
           {% if user.is_authenticated %}
             <li class="nav-item">
