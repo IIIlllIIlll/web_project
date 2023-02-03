@@ -16,7 +16,7 @@ import json
 import os.path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-6-gn8u41-45z$(sg+z(f0t1%n92_f8n+oe$^(^p5-rs@^sr3yo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['43.200.23.210']
 
 
 # Application definition
