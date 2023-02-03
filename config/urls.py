@@ -14,20 +14,28 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.views.generic import TemplateView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("",TemplateView.as_view(template_name="index.html"),name="main"),
-    path("generic/",TemplateView.as_view(template_name="generic.html"),name="generic"),
-    path("elements/",TemplateView.as_view(template_name="elements.html"),name="elements"),
-    path("todo_list/",include('to_do_list.urls')),
-    # path("board/", include('board.urls') ),
+    path("", TemplateView.as_view(template_name="index.html"), name="main"),
+    path("generic/", TemplateView.as_view(template_name="generic.html"), name="generic"),
+    path("elements/", TemplateView.as_view(template_name="elements.html"),
+         name="elements"),
+    path("todo_list/", include('todo_list.urls')),
+    path("board/", include('board.urls')),
+    path("find/", include('find.urls')),
     # path("chat/", include('chat.urls') ),
-    # path("community/", include('community.urls') ),
-    # path("maps/", include('maps.urls') ),
+    path("community/", include('community.urls')),
+    path("maps/", include('map.urls')),
     # path("ranking/", include('ranking.urls') ),
-    # /path("to_do_list/", include('to_do_list.urls') ),
-    # path("users/", include('users.urls') ),
-]
+    path("todo_list/", include('todo_list.urls')),
+    path("users/", include('user.urls')),
+    #path("volunteer/", include('volunteer.urls')),
+
+    # google login
+    path("accounts/", include('allauth.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+  <style>
+    .completed {
+      width: 10rem;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      right: 10px;
+    }
+  </style>
+{% endblock style %}
+
+{% block contents %}
+  <div class="container">
+    <div class="row  justify-content-center">
+      <div class="col-10">
+
+        <div class="card mb-3">
+          <div class="row g-0">
+            {% for list in vol_list %}
+              <div class="col-md-4">
+                <img src="{{list.image.url }}" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{list.title}}</h5>
+                  <p class="card-text">
+                    <ul>
+                      <li>content :
+                        {{list.content}}</li>
+                      <li>org :
+                        {{list.organization}}</li>
+                      <li>date :
+                        {{list.start_date}}~{{list.end_date}}
+                      </li>
+                      <li>addr :
+                        {{list.organization.addr}}</li>
+                    </ul>
+                    <small class="text-muted">{{list.created_at}}</small>
+                    <img src="{% static 'img/comp.png' %}" alt="" class="completed">
+                  </p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock contents %}

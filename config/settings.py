@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
+import json
+import os.path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,12 +41,24 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "board",
-    "to_do_list",
-    "maps",
-    "ranking",
-    "chat",
-    "users",
-    "community"
+    "find",
+    "todo_list",
+    "map",
+    "user",
+    "community",
+    # "volunteer",
+    "django.contrib.sites",
+    "django.contrib.humanize",
+]
+
+INSTALLED_APPS += [
+    "imagekit",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.kakao",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.naver",
 ]
 
 MIDDLEWARE = [
@@ -69,10 +84,24 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    # 장고 기본 유저 모델
+    'django.contrib.auth.backends.ModelBackend',
+
+    # 인증 체계
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -95,9 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
 
@@ -125,3 +154,63 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+AUTH_USER_MODEL = 'user.User'
+
+# 네이버를 이메일 서버로 설정하기
+DEFAULT_FROM_EMAIL = "pok_cheree@naver.com" # hong123@naver.com
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_HOST = "smtp.naver.com"
+EMAIL_HOST_USER = "pok_cheree" # hong123
+EMAIL_HOST_PASSWORD = "Yongjin66*" # 비밀번호
+EMAIL_PORT = 465
+
+# 구글 소셜 로그인을 위해서 google.json 읽어오기
+
+
+google = os.path.join(BASE_DIR, "google.json")
+with open(google) as f:
+    google = json.loads(f.read())
+
+
+def get_social(setting, google=google):
+    try:
+        return google[setting]
+    except KeyError:
+        error_msg = "set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": get_social("client_id"),
+            "secret": get_social("client_secret"),
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "offline"
+        }
+    }
+}
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+# 127.0.0.1 사이트 아이디
+SITE_ID = 2
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
