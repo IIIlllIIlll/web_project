@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-6-gn8u41-45z$(sg+z(f0t1%n92_f8n+oe$^(^p5-rs@^sr3yo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ec2-3-38-182-200.ap-northeast-2.compute.amazonaws.com']
 
 
 # Application definition
@@ -162,13 +162,13 @@ MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'user.User'
 
 # 네이버를 이메일 서버로 설정하기
-DEFAULT_FROM_EMAIL = "pok_cheree@naver.com" # hong123@naver.com
+DEFAULT_FROM_EMAIL = "pok_cheree@naver.com"  # hong123@naver.com
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 EMAIL_HOST = "smtp.naver.com"
-EMAIL_HOST_USER = "pok_cheree" # hong123
-EMAIL_HOST_PASSWORD = "Yongjin66*" # 비밀번호
+EMAIL_HOST_USER = "pok_cheree"  # hong123
+EMAIL_HOST_PASSWORD = "Yongjin66*"  # 비밀번호
 EMAIL_PORT = 465
 
 # 구글 소셜 로그인을 위해서 google.json 읽어오기
