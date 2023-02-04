@@ -1,5 +1,5 @@
 // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
-var placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 }),
+var placeOverlay = new kakao.maps.CustomOverlay({zIndex: 1}),
   contentNode = document.createElement("div"), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
   markers = [], // 마커를 담을 배열입니다
   currCategory = ""; // 현재 선택된 카테고리를 가지고 있을 변수입니다
@@ -9,7 +9,7 @@ var placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 }),
 var container = document.getElementById("map");
 var options = {
   center: new kakao.maps.LatLng(33.450701, 126.570667),
-  level: 3,
+  level: 3
 };
 
 var map = new kakao.maps.Map(container, options);
@@ -21,8 +21,7 @@ if (navigator.geolocation) {
       lon = position.coords.longitude; // 경도
 
     var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-      message =
-        '<div style="padding:5px; color:black; font-size:0.5em;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+      message = '<div style="padding:5px; color:black; font-size:0.5em;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
 
     // 마커와 인포윈도우를 표시합니다
     displayMarker(locPosition, message);
@@ -39,16 +38,13 @@ if (navigator.geolocation) {
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 function displayMarker(locPosition, message) {
   // 마커를 생성합니다
-  var marker = new kakao.maps.Marker({ map: map, position: locPosition });
+  var marker = new kakao.maps.Marker({map: map, position: locPosition});
 
   var iwContent = message, // 인포윈도우에 표시할 내용
     iwRemoveable = true;
 
   // 인포윈도우를 생성합니다
-  var infowindow = new kakao.maps.InfoWindow({
-    content: iwContent,
-    removable: iwRemoveable,
-  });
+  var infowindow = new kakao.maps.InfoWindow({content: iwContent, removable: iwRemoveable});
 
   // 인포윈도우를 마커위에 표시합니다
   infowindow.open(map, marker);
@@ -98,7 +94,7 @@ function searchPlaces() {
   // 지도에 표시되고 있는 마커를 제거합니다
   removeMarker();
 
-  ps.keywordSearch(currCategory, placesSearchCB, { useMapBounds: true });
+  ps.keywordSearch(currCategory, placesSearchCB, {useMapBounds: true});
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -118,22 +114,11 @@ function placTtable(place) {
   let table = document.querySelector("#tb");
   table.innerHTML = "";
   for (let i = 0; i < place.length; i++) {
-    let row =
-      "<tr><td>" +
-      place[i].place_name +
-      "</td><td>" +
-      place[i].address_name +
-      "</td><td>" +
-      place[i].road_address_name +
-      "</td><td>" +
-      place[i].phone +
-      "</td><td>" +
-      place[i].place_url +
-      "</td></tr>";
+    let row = "<tr><td>" + place[i].place_name + "</td><td>" + place[i].address_name + "</td><td>" + place[i].road_address_name + "</td><td>" + place[i].phone + "</td><td>" + '   <a class="title" href="' + place[i].place_url + '" target="_blank" ' + '">' + '   <button class="btn">' + "자세히 보기" + "</button>" + "</a>" + "</td></tr>";
+
     table.innerHTML += row;
   }
 }
-
 // 지도에 마커를 표출하는 함수입니다
 function displayPlaces(places) {
   // 몇번째 카테고리가 선택되어 있는지 얻어옵니다
@@ -142,10 +127,7 @@ function displayPlaces(places) {
 
   for (var i = 0; i < places.length; i++) {
     // 마커를 생성하고 지도에 표시합니다
-    var marker = addMarker(
-      new kakao.maps.LatLng(places[i].y, places[i].x),
-      order
-    );
+    var marker = addMarker(new kakao.maps.LatLng(places[i].y, places[i].x), order);
 
     // 마커와 검색결과 항목을 클릭 했을 때
     // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
@@ -164,12 +146,12 @@ function addMarker(position, order) {
     imgOptions = {
       spriteSize: new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
       spriteOrigin: new kakao.maps.Point(46, order * 36), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-      offset: new kakao.maps.Point(11, 28), // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+      offset: new kakao.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
     },
     markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
     marker = new kakao.maps.Marker({
       position: position, // 마커의 위치
-      image: markerImage,
+      image: markerImage
     });
 
   marker.setMap(map); // 지도 위에 마커를 표출합니다
@@ -188,44 +170,15 @@ function removeMarker() {
 
 // 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 function displayPlaceInfo(place) {
-  var content =
-    '<div class="placeinfo">' +
-    '   <a class="title" href="' +
-    place.place_url +
-    '" target="_blank" title="' +
-    place.place_name +
-    '">' +
-    place.place_name +
-    "</a>";
+  var content = '<div class="placeinfo">' + '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + "</a>";
 
   if (place.road_address_name) {
-    content +=
-      '    <span title="' +
-      place.road_address_name +
-      '">' +
-      place.road_address_name +
-      "</span>" +
-      '  <span class="jibun" title="' +
-      place.address_name +
-      '">(지번 : ' +
-      place.address_name +
-      ")</span>";
+    content += '    <span title="' + place.road_address_name + '">' + place.road_address_name + "</span>" + '  <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ")</span>";
   } else {
-    content +=
-      '    <span title="' +
-      place.address_name +
-      '">' +
-      place.address_name +
-      "</span>";
+    content += '    <span title="' + place.address_name + '">' + place.address_name + "</span>";
   }
 
-  content +=
-    '    <span class="tel">' +
-    place.phone +
-    "</span>" +
-    "</div>" +
-    '<div class="after"></div>';
-
+  content += '    <span class="tel">' + place.phone + "</span>" + "</div>" + '<div class="after"></div>';
   contentNode.innerHTML = content;
   placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
   placeOverlay.setMap(map);

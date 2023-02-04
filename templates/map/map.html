@@ -1,11 +1,13 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block style %}
-  <link rel="stylesheet" href="{% static 'css/map_style.css' %}">
-{% endblock style %}
-{% block contents %}
+{% extends 'base.html' %} {% load static %} {% block style %}
+
+<link rel="stylesheet" href="{% static 'css/map_style.css' %}" />
+{% endblock style %} {% block contents %}
+<div class="container">
   <div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div
+      id="map"
+      style="width: 100%; height: 100%; position: relative; overflow: hidden"
+    ></div>
     <ul id="category">
       <li id="동물병원" data-order="0">
         <span class="category_bg bank"></span>
@@ -32,26 +34,29 @@
         유기동물보호소
       </li>
     </ul>
-    <div class="row mt-20">
-      <div class="col-10">
-        <table class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>장소명</th>
-              <th>주소</th>
-              <th>지번</th>
-              <th>전화번호</th>
-              <th>상세보기</th>
-            </tr>
-          </thead>
-          <tbody id="tb"></tbody>
-        </table>
-      </div>
+  </div>
+  <div class="row mt-20">
+    <div class="col-10">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>장소명</th>
+            <th>주소</th>
+            <th>지번</th>
+            <th>전화번호</th>
+            <th>상세보기</th>
+          </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+      </table>
     </div>
   </div>
+</div>
 
-{% endblock contents %}
-{% block script %}
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af11d33df30da3cb1be17f209dd3646b&libraries=services,clusterer,drawing"></script>
-  <script src="{% static 'js/map.js' %}"></script>
+{% endblock contents %} {% block script %}
+<script
+  type="text/javascript"
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af11d33df30da3cb1be17f209dd3646b&libraries=services,clusterer,drawing"
+></script>
+<script src="{% static 'js/map.js' %}"></script>
 {% endblock script %}
