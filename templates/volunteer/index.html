@@ -25,21 +25,23 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">{{list.title}}</h5>
+                  <h5 class="card-title">
+                    <a href="{% url 'vol_detail' list.id %}">{{list.title}}</a>
+                  </h5>
                   <p class="card-text">
                     <ul>
                       <li>content :
                         {{list.content}}</li>
                       <li>org :
                         {{list.organization}}</li>
-                      <li>date :
+                      <li class="date">date :
                         {{list.start_date}}~{{list.end_date}}
                       </li>
                       <li>addr :
                         {{list.organization.addr}}</li>
                     </ul>
                     <small class="text-muted">{{list.created_at}}</small>
-                    <img src="{% static 'img/comp.png' %}" alt="" class="completed">
+                    <img src="{% static 'img/comp.png' %}" alt="" class="completed" style="display:none;">
                   </p>
                 </div>
               {% endfor %}
@@ -50,3 +52,19 @@
     </div>
   </div>
 {% endblock contents %}
+{% block script %}
+  <script>
+    let end = new Date("{{vol_list.0.end_date|date:'Y-m-d H:i'}}")
+    let today = new Date("{{today|date:'Y-m-d H:i'}}")
+    if (end < today) {
+      let link = document.querySelectorAll("a")
+      link.forEach((question, idx) => {
+        question.addEventListener('click', (e) => {
+          // 제목 클릭시 a 태그 기능 중지
+          e.preventDefault();
+          alert("이미 종료된 이벤트 입니다.")
+        })
+      })
+    }
+  </script>
+{% endblock script %}

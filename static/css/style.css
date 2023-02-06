@@ -12,7 +12,6 @@ textarea {
 
 #hero:before {
   content: "";
-  background: rgba(0, 0, 0, 0.6);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -32,11 +31,13 @@ textarea {
   flex-direction: column;
   text-align: center;
   padding: 0 15px;
+  margin-right: 55rem;
+  margin-bottom: 5rem;
 }
 
 #hero h3 {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #000;
   font-size: 26px;
   padding: 10px 30px;
   margin-bottom: 30px;
@@ -49,11 +50,11 @@ textarea {
   font-weight: 700;
   line-height: 56px;
   text-transform: uppercase;
-  color: #fff;
+  color: #000;
 }
 
 #hero h2 {
-  color: #eee;
+  color: #000;
   margin-bottom: 40px;
   font-size: 24px;
 }
@@ -68,8 +69,8 @@ textarea {
   padding: 8px 30px 9px 30px;
   border-radius: 50px;
   transition: 0.5s;
-  border: 2px solid #fff;
-  color: #fff;
+  border: 2px solid #000;
+  color: #000;
 }
 
 #hero .btn-get-started:hover {
@@ -180,7 +181,7 @@ input:checked + .slider:before {
 
 .bi-chat-square-heart {
   font-size: 30px;
-  color: crimson;
+  color: #fa565c;
 }
 
 .answer li {

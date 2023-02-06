@@ -2,6 +2,7 @@ from django.db import models
 from user.models import User
 from django.db.models import UniqueConstraint
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(verbose_name='작성날짜', auto_now_add=True)
@@ -20,6 +21,16 @@ class Post(BaseModel):
     
     def __str__(self) -> str:
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("post_detail", args=[self.pk])
+    
+    def get_previous(self):
+        return self.get_previous_by_created_at()
+    
+    def get_next(self):
+        return self.get_next_by_created_at()
+    
     
 # image file naming
 # instance => 현재 정의된 모델의 인스턴스 

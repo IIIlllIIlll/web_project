@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock style %}
+{% block contents %}
+  <div class="container">
+    {% include 'form_errors.html' %}
+    <div class="row">
+      <div class="col-12">
+        <h3 class="border-bottom pb-2">
+          {{detail.title}}
+        </h3>
+      </div>
+      <div class="col-12">
+        <!--이미지-->
+        {% if detail.image %}
+          <img src="{{detail.image.url}}" alt="" class="mx-auto d-block">
+        {% endif %}
+      </div>
+      <div class="col-12">
+        <!--본문-->
+        <p>{{detail.start_date}}</p>
+        <p>{{detail.end_date}}</p>
+        <p>{{detail.organization.org_name}}</p>
+        <p>{{detail.organization.addr}}</p>
+        <p>{{detail.organization.director}}</p>
+        <p>{{detail.organization.phone_num}}</p>
+      </div>
+    </div>
+    <!--내용보기 종료-->
+    <div>
+      <a href="#" data-uri="{% url 'sign_vol' detail.id %}" class="sign_vol btn mx-auto d-block btn-primary">신청하기</a>
+    </div>
+
+  </div>
+{% endblock contents %}
+{% block script %}
+  <script>
+    document
+      .querySelector(".sign_vol")
+      .addEventListener('click', (e) => {
+        if (confirm('잠여하시겠습니까?')) {
+          e.preventDefault();
+          location.href = e.target.dataset.uri
+          if (confirm("캘린더에 일정을 추가하시겠습니까?")) {
+            location.href = "{% url 'add_cal' detail.id %}"
+          }
+        }
+      })
+  </script>
+{% endblock script %}

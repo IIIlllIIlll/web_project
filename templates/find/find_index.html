@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block style %}
+<style>
+  .fa-solid {
+    color:#675444 ;
+  }
+</style>
+<script src="https://kit.fontawesome.com/482f2e22f6.js" crossorigin="anonymous"></script>
+{% endblock style %}
 {% block contents %}
 <div class="container my-3">
   <div class='pt-5'>
     <div class="d-flex justify-content-center mt-5 mb-5">
       <a href="{% url 'find_index' %}" class='move'>
-        <h3>Find</h3>
+        <h1><i class="fa-solid fa-paw"></i> <strong>임보/입양</strong> <i class="fa-solid fa-paw"></i></h1>
       </a>
     </div>
+    <hr style="width:40rem; margin: 0 auto;"/>
     <div class="d-flex justify-content-center mt-5 mb-5">
       {% if keyword %}
         <h5>'{{keyword}}' 검색 결과입니다.</h5>

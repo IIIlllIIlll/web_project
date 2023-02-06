@@ -34,7 +34,7 @@ urlpatterns = [
     # path("ranking/", include('ranking.urls') ),
     path("todo_list/", include('todo_list.urls')),
     path("users/", include('user.urls')),
-    #path("volunteer/", include('volunteer.urls')),
+    path("volunteer/", include('volunteer.urls')),
 
     # google login
     path("accounts/", include('allauth.urls')),

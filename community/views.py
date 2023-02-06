@@ -152,6 +152,7 @@ def post_detail(request, post_id):
         "community/post_detail.html",
         {"post": post, "page": page, "keyword": keyword, "so": so},
     )
+    
 
 
 # 수정

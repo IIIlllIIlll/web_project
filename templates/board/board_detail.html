@@ -2,6 +2,12 @@
 {% load static %}
 {% block style %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <style>
+  .order {
+    text-decoration: none;
+    color: inherit;
+  }
+</style>
 {% endblock style %}
 {% block contents %}
 
@@ -54,15 +60,30 @@
         <hr class='one mt-5 mb-5'>
       </div>
 
-      <!--원본 글 수정/삭제-->
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <div class="form-group my-3">
-          {% if post.writer == request.user %}
-            <a href="{% url 'board_edit' post.pk %}" class="btn btn-secondary">수정</a>
-            <a href="{% url 'board_remove' post.pk %}" class=" btn-dark btn">글삭제</a>
-          {% endif %}
+      <div class="d-flex mb-5">
+        <div class='me-auto'>
+          {% if post.get_previous %}
+          <div> 
+            <a href="{{post.get_previous.get_absolute_url}}" class='order'>이전글 : {{post.get_previous}}</a>
           </div>
+          {% endif %}
+          {% if post.get_next %}
+          <div> 
+            <a href="{{post.get_next.get_absolute_url}}" class='order'>다음글 : {{post.get_next}}</a>
+          </div>
+          {% endif %}
         </div>
+        
+              <!--원본 글 수정/삭제-->
+        <div class="">
+          {% if post.writer == request.user %}
+          <a href="#" class="btn btn-sm btn-outline-secondary delete" data-uri="{% url 'board_remove' post.pk %}">삭제</a>
+          <a href="{% url 'board_edit' post.pk %}" class="btn btn-sm btn-outline-secondary">수정</a>
+          {% endif %}
+          <a href="{% url 'board_index' %}" class="btn list" style="background-color:#675444; color:#fff" data-uri="">목록으로</a>
+        </div>
+      </div>
+
       </form>
     </div>
 

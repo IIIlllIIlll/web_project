@@ -1,8 +1,24 @@
 {% extends 'base.html' %} {% load static %} {% block style %}
-
+<style>
+  .fa-solid {
+    color: #675444;
+  }
+</style>
 <link rel="stylesheet" href="{% static 'css/map_style.css' %}" />
+<script
+  src="https://kit.fontawesome.com/482f2e22f6.js"
+  crossorigin="anonymous"
+></script>
+
 {% endblock style %} {% block contents %}
-<div class="container">
+<div class="container mt-5" style="margin: 0 auto; text-align: center">
+  <a href="{% url 'find_index' %}" class="move">
+    <h1>
+      <i class="fa-solid fa-paw"></i> <strong>지도 보기</strong>
+      <i class="fa-solid fa-paw"></i>
+    </h1>
+    <p>필요한 주변 시설을 찾아보세요.</p>
+  </a>
   <div class="map_wrap">
     <div
       id="map"

@@ -9,10 +9,10 @@
 .map_wrap {
   position: relative;
   width: 80%;
-  height: 500px;
+  height: 450px;
   display: block;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-  margin: 80px auto 0;
+  margin: 40px auto 0;
 }
 
 #category {
@@ -175,6 +175,6 @@
 }
 
 .btn {
-  background-color: #7fb1bf;
+  background-color: #675444;
   color: white;
 }

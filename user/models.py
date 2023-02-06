@@ -82,6 +82,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name="성별", choices=GENDER_CHOICES, default=2)
 
     is_staff = models.BooleanField(verbose_name="관리자여부", default=False)
+    is_active = models.BooleanField(verbose_name="활성화여부", default=True)
 
     # CustomUser 를 기반으로 user 생성을 도와줄 매니저 클래스 등록
     objects = UserManger()  # User.objects.create_user() 생성

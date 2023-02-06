@@ -1,8 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <style>
+    .inner {
+      margin: 50px 200px 200px;
+    }
+  </style>
+
+</html>
 {% extends 'base.html' %}
 {% block contents %}
   <section id="banner">
-    <div class="inner">
-      <h1 class="pb-3 border-bottom" style="color:black">SignUp</h1>
+    <div class="container inner" style="width:60%; margin-top:5rem">
+      <h3 class="pb-3 border-bottom" style="color:black">
+        <strong>회원가입</strong>
+      </h3>
       {% include 'form_errors.html' %}
       <form method="post">
         {% csrf_token %}
@@ -33,7 +51,7 @@
         </div>
         <section>
           <div class="form-group mt-3">
-            <button class="btn btn-transparent" type="submit">회원가입</button>
+            <button class="btn" type="submit" style="background-color:#675444; color:#fff">회원가입</button>
           </div>
         </section>
       </form>

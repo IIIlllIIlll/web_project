@@ -1,7 +1,7 @@
 from django.db import models
 from django.db import models
 from user.models import User
-
+from django.urls import reverse
 
 class Find(models.Model):
     title = models.CharField(max_length=30)
@@ -20,7 +20,14 @@ class Find(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("find_detail", args=[self.pk])
 
+    def get_previous(self):
+        return self.get_previous_by_created_at()
+
+    def get_next(self):
+        return self.get_next_by_created_at()
 class FindComment(models.Model):
     writer = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="작성자")

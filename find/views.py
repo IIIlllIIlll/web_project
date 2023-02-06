@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404, resolve_url
 from django.contrib.auth.decorators import login_required
 from find.models import Find, FindComment, FindReComment
@@ -24,9 +23,10 @@ def home(request):
         posts = Find.objects.order_by('-comment_count', '-created_at')
         # posts = Find.objects.annotate(com_cut=Count(
         #     'comment')).order_by('-com_cut', '-created_at')
-    elif sort == 'best':
-        posts = Find.objects.annotate(best_cnt=Count(
-            'best')).order_by('-best_cnt', '-created_at')
+    elif sort == 'voter':
+        posts = Find.objects.order_by('-voter', '-created_at')
+        # posts = Find.objects.annotate(best_cnt=Count(
+        #     'voter')).order_by('-best_cnt', '-created_at')
     else:
         posts = Find.objects.order_by('-created_at')
 
@@ -207,5 +207,5 @@ def vote_question(request, post_id):
         post.voter.add(request.user)
     else:
         messages.error(request, '본인이 작성한 글은 추천할 수 없습니다')
-        
+
     return redirect("find_detail", pk=post_id)

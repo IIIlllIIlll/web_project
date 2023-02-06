@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 {% load board_filter %}
+{% block style %}
+<style>
+  .list {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .fa-solid {
+    color:#675444 ;
+  }
+</style>
+<script src="https://kit.fontawesome.com/482f2e22f6.js" crossorigin="anonymous"></script>
+{% endblock style %}
 {% block contents %}
   <div class="container my-3 mb-5">
     <div class='pt-5'>
       <div class="d-flex justify-content-center mt-5 mb-5">
-          <h3>Community</h3>
+          <a href="{% url 'post_list' %}" class='list'><h1><i class="fa-solid fa-paw"></i> <strong>Community</strong> <i class="fa-solid fa-paw"></i></h1></a>
       </div>
+      <hr style="width:40rem; margin: 0 auto;"/>
+
       <div class="d-flex justify-content-center mt-5 mb-5">
         {% if keyword %}
           <h5>'{{keyword}}' 검색 결과입니다.</h5>
@@ -86,7 +101,7 @@
     </table>
 
     <div class="mt-3" style="float: right">
-      <a href="{% url 'post_write' %}" class="btn btn-secondary">글 작성</a>
+      <a href="{% url 'post_write' %}" class="btn" style="background-color:#675444; color:#fff">글 작성</a>
     </div>
 
     <!-- 페이징 -->
@@ -117,6 +132,7 @@
     </nav>
   </div>
 
+  <!-- 검색시 -->
   <form action="{% url 'post_list' %}" id='searchForm'>
     <input type="hidden" name='search_kind' value="{{search_kind|default_if_none:''}}" class='search_kind'>
     <input type="hidden" name='keyword' value="{{keyword|default_if_none:''}}" class='keyword'>

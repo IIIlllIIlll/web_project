@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import User
+from django.urls import reverse
 # from imagekit.models import ImageSpecField
 # from imagekit.processors import Thumbnail
 # from imagekit.processors import ResizeToFill
@@ -19,8 +20,18 @@ class Care(models.Model):
     writer = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="작성자")
     comment_count = models.IntegerField(default=0)
+
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("board_detail", args=[self.pk])
+
+    def get_previous(self):
+        return self.get_previous_by_created_at()
+
+    def get_next(self):
+        return self.get_next_by_created_at()
 
 
 class CareCount(models.Model):
