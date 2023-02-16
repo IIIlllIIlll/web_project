@@ -2,7 +2,6 @@
 {% load static %}
 {% block style %}
   <style>
-
     .content-1 {
       float: left;
       width: 33%;
@@ -57,8 +56,6 @@
       margin-bottom: 50px;
     }
 
- 
-
     .clearfix:after,
     .clearfix:before {
       display: block;
@@ -78,7 +75,7 @@
       float: left;
       display: fixed;
       text-align: center;
-      margin-left: 300px;
+      margin-left: 130px;
       position: relative;
     }
 
@@ -86,6 +83,13 @@
       float: left;
       display: fixed;
 
+      text-align: center;
+      position: relative;
+    }
+
+    .content-6 {
+      float: left;
+      display: fixed;
       text-align: center;
       position: relative;
     }
@@ -106,6 +110,15 @@
       overflow: hidden;
       margin-left: 20px;
       margin-right: 100px;
+    }
+
+    .image-6 {
+      width: 250px;
+      height: 250px;
+      border-radius: 70%;
+      overflow: hidden;
+      margin-left: 20px;
+      margin-right: 90px;
     }
 
     .about {
@@ -190,16 +203,15 @@
       width: 100%;
     }
 
-    .list-unstyled{
-      text-decoration:none;
+    .list-unstyled {
+      text-decoration: none;
     }
 
-    .fas{
-      color:#fabe50 ;
+    .fas {
+      color: #fabe50;
     }
   </style>
   <script src="https://kit.fontawesome.com/482f2e22f6.js" crossorigin="anonymous"></script>
- 
 
 {% endblock style %}
 {% block contents %}
@@ -210,17 +222,24 @@
         <strong>모든 것</strong>
       </h3>
       <h1 style="font-size:100px; color:#675444 ">Petmily</h1>
-      <h2 class="mt-4"><strong>임시보호</strong>부터 <strong>반려동물의 정보</strong>까지 한번에</h2>
+      <h2 class="mt-4">
+        <strong>임시보호</strong>부터
+        <strong>반려동물의 정보</strong>까지 한번에</h2>
       {% if not user.is_authenticated %}
         <a class="btn-get-started scrollto" aria-current="page" href="{% url 'login' %}">Login</a>
       {% else %}
         <a class="btn-get-started scrollto logout" aria-current="page" href="{% url 'logout' %}">Logout</a>
       {% endif %}
-      
+
     </div>
   </section>
-  <div class="container text-center clearfix" >
-    <h1 class="content-text mt-5 mb-4"><strong> <i class="fa-solid fa-paw pe-3" style="color:#675444"></i>Contents <i class="fa-solid fa-paw pe-3" style="color:#675444"></i> </strong></h1>
+  <div class="container text-center clearfix">
+    <h1 class="content-text mt-5 mb-4">
+      <strong>
+        <i class="fa-solid fa-paw pe-3" style="color:#675444"></i>Contents
+        <i class="fa-solid fa-paw pe-3" style="color:#675444"></i>
+      </strong>
+    </h1>
     <hr/>
     <div class="content-box mt-5">
       <div class="content-1">
@@ -311,10 +330,32 @@
         </div>
       </div>
     </div>
+    <div class="content-6">
+      <div class="image-6" style="background: #bdbdbd">
+        <img class="profile" src="static/img/image-6.png"/>
+        <div class="text mt-3">
+          <h2 style="color: #000; ">
+            <strong>봉사활동</strong>
+          </h2>
+          <hr/>
+          <p>
+            지금 신청 가능한
+            <br/>
+            봉사활동은?
+          </p>
+          <a href="{% url 'vol_index' %}" class="btn" style="background-color:#675444; color:#fff;">봉사활동 바로가기></a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="container four">
-    <h1 class="content-text mb-5" style="text-align: center"><i class="fa-solid fa-paw pe-3" style="color:#675444"></i><strong>Our gallery </strong><i class="fa-solid fa-paw pe-3" style="color:#675444"></i> </h1>
+    <h1 class="content-text mb-5" style="text-align: center">
+      <i class="fa-solid fa-paw pe-3" style="color:#675444"></i>
+      <strong>Our gallery
+      </strong>
+      <i class="fa-solid fa-paw pe-3" style="color:#675444"></i>
+    </h1>
     <hr/>
     <div class="row column">
       <div class="col-2">

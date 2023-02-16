@@ -15,6 +15,7 @@ class Todo(models.Model):
     important = models.BooleanField(default=False)
     start_date = models.DateTimeField(verbose_name="시작일시")
     end_date = models.DateTimeField(verbose_name="종료일시")
+    vol_id = models.IntegerField(default=False,null=True,blank=True)
 
     def __str__(self) -> str:
         return self.title

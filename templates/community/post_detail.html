@@ -140,7 +140,7 @@
                   <a href="#" class="btn btn-sm btn-outline-secondary delete" data-uri="{% url 'answer_delete' answer.id %}">삭제</a>
                   {% endif %}
                   <a href="{% url 'comment_write' answer.id %}" class="btn btn-sm btn-outline-secondary">대댓글</a>
-                  <a href="{% url 'vote_answer' answer.id %}" class="recommend btn btn-sm ms-3">추천 : {{answer.vote.count}}</a>
+                  <a href="{% url 'vote_answer' answer.id %}" class="recommend btn btn-outline-secondary btn-sm ms-3">추천 : {{answer.vote.count}}</a>
                 </div>
                 <!-- 대댓글 -->
                 {% if answer.comment_set.count > 0 %}
@@ -157,7 +157,7 @@
                     <a href="{% url 'comment_edit' comment.id %}" class="btn btn-sm btn-outline-secondary ms-3">수정</a>
                     <a href="#" data-uri="{% url 'comment_delete' comment.id %}" class="btn btn-sm btn-outline-secondary delete">삭제</a>
                     {% endif %}
-                    <a href="{% url 'vote_comment' comment.id %}" class="recommend btn btn-sm ms-3">추천 : {{comment.vote.count}}</a>
+                    <a href="{% url 'vote_comment' comment.id %}" class="recommend btn btn-outline-secondary btn-sm ms-3">추천 : {{comment.vote.count}}</a>
                   </div>
                   {% endfor %}
                 </div>

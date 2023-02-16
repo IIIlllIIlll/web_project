@@ -18,7 +18,7 @@ class Organization(models.Model):
 
 
 class Volunteer(models.Model):
-    title = models.CharField(max_length=15, verbose_name="제목")
+    title = models.CharField(max_length=30, verbose_name="제목")
     organization = models.ForeignKey(
         Organization, on_delete=models.CASCADE, verbose_name="봉사단체")
     content = models.TextField(null=True, default="")
@@ -27,5 +27,4 @@ class Volunteer(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    url = models.URLField(verbose_name="홈페이지", null=True, blank=True)
     sign_vol = models.ManyToManyField(User, related_name='sign_up', verbose_name='신청')
